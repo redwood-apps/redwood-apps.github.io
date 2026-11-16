@@ -47,7 +47,9 @@ a:hover { text-decoration: underline; }
   color: var(--on-hero);
   padding: 40px 16px 72px;
 }
-.hero-inner, .content { max-width: 680px; margin: 0 auto; }
+/* у колонки свои поля 16, у шапки их даёт .hero: ширина шапки меньше на эти поля, края совпадают */
+.content { max-width: 780px; margin: 0 auto; }
+.hero-inner { max-width: 748px; margin: 0 auto; }
 .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 28px; }
 .brand { color: var(--on-hero); opacity: .88; font-weight: 500; font-size: 15px; }
 .app-head { display: flex; align-items: center; gap: 16px; }
@@ -103,7 +105,7 @@ a:hover { text-decoration: underline; }
 
 .email { font-size: 20px; font-weight: 600; word-break: break-all; margin: 14px 0 0 !important; }
 
-footer { max-width: 680px; margin: 0 auto; padding: 8px 16px 40px; color: var(--muted); font-size: 14px; }
+footer { max-width: 780px; margin: 0 auto; padding: 8px 16px 40px; color: var(--muted); font-size: 14px; }
 
 /* Языки: страница несёт все переводы, скрипт оставляет видимым один. */
 [hidden] { display: none !important; }
