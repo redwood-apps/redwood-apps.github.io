@@ -1,36 +1,47 @@
-// Язык страницы: ?lang= в адресе, затем прошлый выбор, затем язык браузера.
-// Русский — для русского, белорусского и казахского браузера, остальным английский.
+// Язык страницы: ?lang= в адресе, затем прошлый выбор, затем языки браузера по порядку,
+// иначе английский. Доступные языки — те, что есть в списке выбора на странице.
 (function () {
-  var langs = ['en', 'ru'];
   var root = document.documentElement;
-  var saved = null;
-  try { saved = localStorage.getItem('lang'); } catch (e) {}
-  var query = new URLSearchParams(location.search).get('lang');
-  var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
-  var lang = langs.indexOf(query) >= 0 ? query
-    : langs.indexOf(saved) >= 0 ? saved
-    : ['ru', 'be', 'kk'].indexOf(nav) >= 0 ? 'ru' : 'en';
 
-  function apply(l) {
-    root.setAttribute('data-show', l);
-    root.lang = l;
-    var title = root.getAttribute('data-title-' + l);
-    if (title) document.title = title;
-    var buttons = document.querySelectorAll('.langs button');
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-set') === l));
-    }
+  function available() {
+    var select = document.getElementById('lang');
+    if (!select) return ['en'];
+    return Array.prototype.map.call(select.options, function (o) { return o.value; });
   }
 
-  apply(lang);
+  function pick(langs) {
+    var query = new URLSearchParams(location.search).get('lang');
+    if (langs.indexOf(query) >= 0) return query;
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    if (langs.indexOf(saved) >= 0) return saved;
+    var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+    for (var i = 0; i < prefs.length; i++) {
+      var code = String(prefs[i]).slice(0, 2).toLowerCase();
+      if (langs.indexOf(code) >= 0) return code;
+      // белорусский и казахский браузер скорее поймёт русский, чем английский
+      if ((code === 'be' || code === 'kk') && langs.indexOf('ru') >= 0) return 'ru';
+    }
+    return 'en';
+  }
+
+  function apply(l) {
+    root.lang = l;
+    var parts = document.querySelectorAll('[data-lang]');
+    for (var i = 0; i < parts.length; i++) parts[i].hidden = parts[i].getAttribute('data-lang') !== l;
+    var select = document.getElementById('lang');
+    if (select) select.value = l;
+    var sub = document.querySelector('.sub [data-lang="' + l + '"]');
+    if (sub) document.title = 'Grace — ' + sub.textContent;
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
-    apply(lang);
-    var buttons = document.querySelectorAll('.langs button');
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener('click', function () {
-        lang = this.getAttribute('data-set');
-        try { localStorage.setItem('lang', lang); } catch (e) {}
-        apply(lang);
+    var select = document.getElementById('lang');
+    apply(pick(available()));
+    if (select) {
+      select.addEventListener('change', function () {
+        try { localStorage.setItem('lang', select.value); } catch (e) {}
+        apply(select.value);
       });
     }
   });

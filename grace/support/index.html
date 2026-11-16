@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-show="en" data-title-en="Grace — Support" data-title-ru="Grace — Поддержка">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -15,13 +15,13 @@
   <div class="hero-inner">
     <div class="hero-top">
       <span class="brand">Redwood Apps</span>
-      <nav class="langs" aria-label="Language"><button data-set="en">English</button><button data-set="ru">Русский</button></nav>
+      <label class="lang-select"><span class="visually-hidden">Language</span><select id="lang"><option value="en" lang="en">English</option><option value="ru" lang="ru">Русский</option></select></label>
     </div>
     <div class="app-head">
       <img class="icon" src="../../assets/grace-icon.png" alt="" width="64" height="64">
       <div>
         <h1>Grace</h1>
-        <p class="sub"><span data-lang="en">Support</span><span data-lang="ru">Поддержка</span></p>
+        <p class="sub"><span data-lang="en">Support</span><span data-lang="ru" lang="ru" hidden>Поддержка</span></p>
       </div>
     </div>
   </div>
@@ -32,13 +32,13 @@
       <h2>Write to us</h2>
       <p>Questions, bugs, ideas — we read every email.</p>
     </div>
-    <div data-lang="ru">
+    <div data-lang="ru" lang="ru" hidden>
       <h2>Напишите нам</h2>
       <p>Вопросы, ошибки, пожелания — читаем каждое письмо.</p>
     </div>
     <p class="email"><a href="mailto:redwoodapps@yandex.ru?subject=Grace">redwoodapps@yandex.ru</a></p>
     <div class="links">
-      <a class="button" href="mailto:redwoodapps@yandex.ru?subject=Grace"><span data-lang="en">Send an email</span><span data-lang="ru">Написать письмо</span></a>
+      <a class="button" href="mailto:redwoodapps@yandex.ru?subject=Grace"><span data-lang="en">Send an email</span><span data-lang="ru" lang="ru" hidden>Написать письмо</span></a>
     </div>
   </section>
   <section class="card">
@@ -52,7 +52,7 @@
       </ul>
       <p class="muted">The app can't read your phone model, so it doesn't add it for you.</p>
     </div>
-    <div data-lang="ru">
+    <div data-lang="ru" lang="ru" hidden>
       <h2>Если нашли ошибку</h2>
       <p>Добавьте в письмо:</p>
       <ul>
@@ -64,7 +64,7 @@
     </div>
   </section>
   <section class="card">
-    <p><a href="../privacy/"><span data-lang="en">Privacy Policy</span><span data-lang="ru">Политика конфиденциальности</span></a></p>
+    <p><a href="../privacy/"><span data-lang="en">Privacy Policy</span><span data-lang="ru" lang="ru" hidden>Политика конфиденциальности</span></a></p>
   </section>
 </main>
 <footer>© 2026 Redwood Apps</footer>
