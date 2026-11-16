@@ -38,7 +38,6 @@ body {
   background: var(--paper);
   color: var(--ink);
   font: 400 17px/1.5 Inter, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
-  font-feature-settings: "tnum";
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -83,7 +82,7 @@ a:hover { text-decoration: underline; }
 .card h2 { margin: 0 0 8px; font-size: 20px; line-height: 1.3; font-weight: 600; }
 .policy h2 { margin: 26px 0 6px; font-size: 18px; }
 /* у деванагари и тайского письма надстрочные знаки: строке нужно больше воздуха */
-[lang="hi"] .card p, [lang="th"] .card p, .card[lang="hi"] p, .card[lang="th"] p { line-height: 1.75; }
+[lang="hi"] p, [lang="hi"] li, [lang="th"] p, [lang="th"] li { line-height: 1.75; }
 .card h3 { margin: 20px 0 6px; font-size: 17px; font-weight: 600; }
 .card p { margin: 0 0 12px; color: var(--ink); }
 .card p:last-child { margin-bottom: 0; }

@@ -33,6 +33,14 @@
     if (select) select.value = l;
     var sub = document.querySelector('.sub [data-lang="' + l + '"]');
     if (sub) document.title = 'Grace — ' + sub.textContent;
+    // Ссылки между страницами сайта несут язык: иначе переход с политики на поддержку
+    // снова выбирал бы язык по браузеру, а не тот, что человек видит сейчас.
+    var links = document.querySelectorAll('a[href^="../"]');
+    for (var j = 0; j < links.length; j++) {
+      var base = links[j].getAttribute('data-base') || links[j].getAttribute('href').split('?')[0];
+      links[j].setAttribute('data-base', base);
+      links[j].setAttribute('href', base + '?lang=' + l);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
